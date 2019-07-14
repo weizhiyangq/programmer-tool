@@ -1,0 +1,41 @@
+上传分享代码
+1.在GitHub上建立项目
+
+登录GitHub后，在右边靠中那里找到一个按钮“New Repository”，点击过后，填入项目名称、说明和网址过后就可以创建了，
+然后会出现一个提示页面，记下类似git@github.com:XXX/XXX.git的地址（注意，是ssh那里的不是http的），这个就是你这个项目的地址了。
+
+2.配置Git以及上传代码
+
+前置说明：
+安装Git成功后，如果是Windows下，选择Git Bash，在命令行中完成一切，可能开始有点麻烦，不过就那几条命令行，用几次就记住啦。首先初始设置Git：
+
+		1 git config --global user.name "Your Real Name"
+		2 git config --global user.email you@email.address
+
+然后开始进行最麻烦的一步了，你需要上传文件到GitHub的Git系统上，得需要一个SSH密匙来认证，下面就开始生成密钥和提交密钥。打开Git Bash,创建SSH key:
+	        ssh-keygen -C 'your@email.address' -t rsa
+
+后要你输入SSH密匙的存放位置，可以不管，直接回车使用默认路径。再输入你想要的密码，SSH key就生成了。现在你需要将这个Key提交到GitHub，首先打开Key保存的位置，里面会有三个文件，找到id_rsa.pub，用文本编辑器打开，复制里面的全部字符。到GitHub，在右上方工具栏里找到Account Settings。在这个页面上有一个SSH Public Keys标签，选择Add another public key。Title可以随便填一个，Key就粘贴刚才的字符，提交。
+
+完成这些工作后，就可以上传自己的代码了。
+以上说明只需要在安装github后操作一次就可以了
+
+项目上传步骤：
+1、找到自己要分享上传的代码文件夹，右击选择Git Bash，或者在Git Bash中进入这个文件夹。建立一个仓库：
+                       git init
+2、选择要添加进仓库的文件：
+                        git add .
+3、一般如果你想分享这个文件夹里的所有代码，就在 add后面加“.”，上面的例子就是这样，如果传指定的，只需要把“.”改为文件名即可，现在只是选择了要加入仓库的文件，下面才是添加进入仓库：
+      git commit -m 'Test'  其中 'Test' 为说明
+      -m后面跟一个参数，表示说明，将代码提交到GitHub后，将会在代码文件信息上显示这个说明，如下图标记的地方。
+4、输入
+                git remote add origin git@github.com:XXX/XXX.git         这个git@github.com:XXX/XXX.git就是上面创建项目是生成的地址
+                git push -u origin master 
+
+
+项目更新操作：
+在项目文件夹右键选择Git Bash
+输入：
+    git add .
+    git commit -m 'add stacking_nn_example_file'    其中'add stacking_nn_example_file'为说明
+    git push origin master
